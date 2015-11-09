@@ -26,11 +26,20 @@ class Board:
     def _placeStone(self, position, player):
         x, y = position
         self.board[y][x] = self.identifiers[player]
-        self._switchTurn()
 
     def printBoard(self):
         for line in self.board:
             print((line))
+
+    def set(self, position, player):
+        if self.valid(position, player):
+            self._placeStone(position, player)
+            self._switchTurn()
+            return True
+        return False
+
+    def victory(self):
+        return -1
 
 bl = player.Player('x', "Black")
 wh = player.Player('y', "White")
